@@ -26,11 +26,9 @@ type Props = {
       referrerpolicy="no-referrer"></script>
     <title>{SITE_TITLE} - {title}</title>
   </head>
-  <body class="min-h-screen bg-white">
-    <Navigation client:load url={Astro.url} />
-    <main class="container mx-auto max-w-screen">
+  <body class="min-h-screen bg-white w-screen">
+    <Navigation  url={Astro.url} client:visible/>
       <slot />
-    </main>
   </body>
 </html>
 

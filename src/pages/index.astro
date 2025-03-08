@@ -1,10 +1,28 @@
 ---
+import { loadRenderers } from "astro:container";
 import MainLayout from "../layouts/MainLayout.astro";
+import { fetchHomepage } from "../lib/fetchHomepage";
 
-
-
+const homepageData = await fetchHomepage();
+console.log(homepageData);
 ---
 
 <MainLayout>
-  
+  <main class="container mx-auto max-w-screen">
+    <section class="mb-28 mx-auto max-w-7xl">
+      <div class="mt-12">
+        {
+          homepageData ? (
+            <>
+              <h1 class="text-4xl font-bold">{homepageData.title}</h1>
+              <pre>{JSON.stringify(homepageData, null, 2)}</pre>
+            </>
+          ) : (
+            <p>Loading homepage data...</p>
+          )
+        }
+        <!-- Add more content rendering here -->
+      </div>
+    </section>
+  </main>
 </MainLayout>
