@@ -1,4 +1,5 @@
 ---
+import Navigation from "@/components/navigation";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/constants";
 import "@/styles/global.css";
 
@@ -17,7 +18,7 @@ type Props = {
     <meta name="description" content={SITE_DESCRIPTION} />
     <meta name="robots" content="follow, index" />
     <link rel="colonical" href="/" />
-    <link rel="icon" type="image/svg+xml" href="../../public/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.js"
       integrity="sha512-BJ/5sR2hFxQTKin/55JQCcMTObShDBAmVjL/3NR/MVcrhyOazJjAgvROem03+HYyGw16SVdSfoWCFGr9syxAKA=="
@@ -25,10 +26,9 @@ type Props = {
       referrerpolicy="no-referrer"></script>
     <title>{SITE_TITLE} - {title}</title>
   </head>
-  <body class="min-h-screen bg-white">
-    <main class="container mx-auto max-w-screen">
+  <body class="min-h-screen bg-white w-full ">
+    <Navigation  url={Astro.url} client:visible/>
       <slot />
-    </main>
   </body>
 </html>
 

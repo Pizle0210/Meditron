@@ -1,10 +1,52 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { fetchHomepage } from "../lib/fetchHomepage";
+import Hero from "@/components/hero";
 
+const homepageData = await fetchHomepage();
+const {
+  title,
+  description,
+  homePageImages,
+  heroImgText,
+  backgroundSvg,
+  groupIconsImages,
+  healthCareProvidersImages,
+  pmbSolutionsTitle,
+  pmbSolutionsDescription,
+  pmbSolutionsImage,
+  ourServicesTitle,
+  ourServicesDescription,
+  servicesSections,
+  howOurPlatformWorks,
+  howOurPlatformWorksDescription,
+  howOurPlatformWorksImage,
+  howPlatformWorksSections,
+  learnMoreSection,
+  learnMoreSectionDescription,
+  learnMoreSectionImage,
+  bookAppointmentTitle,
+  bookAppointmentDescription,
+  bookAppointmentBenefits,
+  bookAppointmentImage,
+  sideIcons,
+} = homepageData;
 
-
+console.log(backgroundSvg);
 ---
 
 <MainLayout>
-  
+  <main class=" mx-auto ">
+    <!-- hero section -->
+    <section class="mb-28 mt-12 mx-auto">
+      <Hero
+        title={title}
+        description={description}
+        imageUrl={homePageImages?.[2]?.asset?.url}
+        groupIconsImage={groupIconsImages?.[0]?.asset?.url}
+      backgroundSvg={backgroundSvg}
+      />
+    </section>
+  </main>
 </MainLayout>
+<!-- partnerLogos={healthCareProvidersImages?.map((image) => image.asset.url)} -->
