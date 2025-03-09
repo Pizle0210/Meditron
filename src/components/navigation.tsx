@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { ArrowRight } from "lucide-react";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default function Navigation({ url }: { url: URL }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,25 +11,25 @@ export default function Navigation({ url }: { url: URL }) {
   const isActive = (path: string) => url.pathname === path;
 
   return (
-    <header className="">
-      <nav className="lg:px-24 px-10 mx-auto py-10 flex justify-between items-center">
+    <header className="w-full">
+      <nav className="mx-auto flex w-full items-center justify-between px-10 py-10 xl:px-20">
         {/* logo */}
         <div className="flex items-center space-x-4">
           <img
             src="/images/medi_logo.png"
             alt="Meditron Logo"
-            className="w-16 h-10"
+            className="h-10 w-16"
           />
           <div className="flex flex-col">
             <h1 className="text-lg font-bold">Meditron</h1>
             <p className="text-[clamp(.5rem,1.5vw,.8rem)] text-gray-500">
-              Redifining drug accessibility
+              Redefining drug accessibility
             </p>
           </div>
         </div>
         {/* links */}
-        <div className="hidden md:flex items-center space-x-8 lg:space-x-12 text-gray-700">
-          <ul className="flex items-center text-sm space-x-8 lg:space-x-12">
+        <div className="hidden items-center space-x-8 text-gray-700 md:flex lg:space-x-12">
+          <ul className="flex items-center space-x-8 text-sm lg:space-x-12">
             <li
               className={`hover:text-green-500 ${
                 isActive("/") ? "text-green-500" : ""
@@ -59,19 +59,22 @@ export default function Navigation({ url }: { url: URL }) {
             </li>
           </ul>
         </div>
-        <div className="hidden md:block font-bold text-white py-4 ">
-          <Button size="icon" className="flex rounded-sm font-semibold items-center px-20 space-x-2">
+        <div className="hidden py-4 font-bold text-white md:block">
+          <Button
+            size="icon"
+            className="flex items-center space-x-2 rounded-sm px-20 font-semibold"
+          >
             Contact Us
-            <ArrowRight size={20} className="font-bold" />
+            <FaLongArrowAltRight size={20} className="font-bold" />
           </Button>
         </div>
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className="focus:outline-none fixed top-12 flex items-center right-7 z-50"
+            className="fixed top-12 right-7 z-50 flex items-center focus:outline-none"
           >
             <svg
-              className="w-6 h-6"
+              className="h-6 w-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -88,16 +91,16 @@ export default function Navigation({ url }: { url: URL }) {
         </div>
       </nav>
       <div
-        className={`md:hidden fixed top-0 left-0 w-full h-screen z-50 flex flex-col items-start p-5 bg-white transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 z-50 flex h-screen w-full transform flex-col items-start bg-white p-5 transition-transform duration-300 ease-in-out md:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <button
           onClick={toggleMenu}
-          className="self-end focus:outline-none fixed top-12 flex items-center right-7 z-50"
+          className="fixed top-12 right-7 z-50 flex items-center self-end focus:outline-none"
         >
           <svg
-            className="w-6 h-6"
+            className="h-6 w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -111,20 +114,20 @@ export default function Navigation({ url }: { url: URL }) {
             ></path>
           </svg>
         </button>
-        <div className="flex py-5 items-center space-x-4">
+        <div className="flex items-center space-x-4 py-5">
           <img
             src="/images/medi_logo.png"
             alt="Meditron Logo"
-            className="w-16 h-10"
+            className="h-10 w-16"
           />
           <div className="flex flex-col">
             <h1 className="text-lg font-bold">Meditron</h1>
             <p className="text-[clamp(.5rem,1.5vw,.8rem)] text-gray-500">
-              Redifining drug accessibility
+              Redefining drug accessibility
             </p>
           </div>
         </div>
-        <ul className="flex flex-col mt-10 space-y-10 text-gray-700">
+        <ul className="mt-10 flex flex-col space-y-10 text-gray-700">
           <li
             className={`hover:text-green-500 ${
               isActive("/") ? "text-green-500" : ""
@@ -153,9 +156,9 @@ export default function Navigation({ url }: { url: URL }) {
             </a>
           </li>
         </ul>
-        <Button className="flex mt-10 px-16 rounded-sm font-semibold items-center space-x-2">
+        <Button className="mt-10 flex items-center space-x-2 rounded-sm px-16 font-semibold">
           Contact Us
-          <ArrowRight size={20} className="font-bold" />
+          <FaLongArrowAltRight size={20} className="font-bold" />
         </Button>
       </div>
     </header>

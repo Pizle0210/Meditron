@@ -1,7 +1,7 @@
-import sanityClient from './sanityClient';
+import sanityClient from "./sanityClient";
 
 export async function fetchHomepage() {
-  const query = `*[_type == "homepage"]{
+  const query = `*[_type == "homepage"][0]{
     title,
     description,
     homePageImages[]{
@@ -101,5 +101,6 @@ export async function fetchHomepage() {
   }`;
 
   const homepage = await sanityClient.fetch(query);
+  console.log(homepage); // Add this line to inspect the fetched data
   return homepage;
 }

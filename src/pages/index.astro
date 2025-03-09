@@ -1,28 +1,52 @@
 ---
-import { loadRenderers } from "astro:container";
 import MainLayout from "../layouts/MainLayout.astro";
 import { fetchHomepage } from "../lib/fetchHomepage";
+import Hero from "@/components/hero";
 
 const homepageData = await fetchHomepage();
-console.log(homepageData);
+const {
+  title,
+  description,
+  homePageImages,
+  heroImgText,
+  backgroundSvg,
+  groupIconsImages,
+  healthCareProvidersImages,
+  pmbSolutionsTitle,
+  pmbSolutionsDescription,
+  pmbSolutionsImage,
+  ourServicesTitle,
+  ourServicesDescription,
+  servicesSections,
+  howOurPlatformWorks,
+  howOurPlatformWorksDescription,
+  howOurPlatformWorksImage,
+  howPlatformWorksSections,
+  learnMoreSection,
+  learnMoreSectionDescription,
+  learnMoreSectionImage,
+  bookAppointmentTitle,
+  bookAppointmentDescription,
+  bookAppointmentBenefits,
+  bookAppointmentImage,
+  sideIcons,
+} = homepageData;
+
+console.log(backgroundSvg);
 ---
 
 <MainLayout>
-  <main class="container mx-auto max-w-screen">
-    <section class="mb-28 mx-auto max-w-7xl">
-      <div class="mt-12">
-        {
-          homepageData ? (
-            <>
-              <h1 class="text-4xl font-bold">{homepageData.title}</h1>
-              <pre>{JSON.stringify(homepageData, null, 2)}</pre>
-            </>
-          ) : (
-            <p>Loading homepage data...</p>
-          )
-        }
-        <!-- Add more content rendering here -->
-      </div>
+  <main class=" mx-auto ">
+    <!-- hero section -->
+    <section class="mb-28 mt-12 mx-auto">
+      <Hero
+        title={title}
+        description={description}
+        imageUrl={homePageImages?.[2]?.asset?.url}
+        groupIconsImage={groupIconsImages?.[0]?.asset?.url}
+      backgroundSvg={backgroundSvg}
+      />
     </section>
   </main>
 </MainLayout>
+<!-- partnerLogos={healthCareProvidersImages?.map((image) => image.asset.url)} -->
