@@ -33,14 +33,19 @@ export default {
       type: 'image',
     },
     {
-      name: 'groupIconsImages',
-      title: 'Group Icon Images',
-      type: 'image',
-      of: [{type: 'images'}],
+      name: 'quoteIcon',
+      title: 'Quote Icon Image',
+      type: 'image', 
     },
     {
       name: 'healthCareProvidersImages',
       title: 'Health Care Providers Images',
+      type: 'array',
+      of: [{type: 'image', options: {hotspot: true}}],
+    },
+    {
+      name: 'endorsementImages',
+      title: 'Ensorsement Images',
       type: 'array',
       of: [{type: 'image', options: {hotspot: true}}],
     },

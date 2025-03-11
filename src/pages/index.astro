@@ -9,8 +9,6 @@ const {
   description,
   homePageImages,
   heroImgText,
-  backgroundSvg,
-  groupIconsImages,
   healthCareProvidersImages,
   pmbSolutionsTitle,
   pmbSolutionsDescription,
@@ -30,23 +28,37 @@ const {
   bookAppointmentBenefits,
   bookAppointmentImage,
   sideIcons,
+  endorsementImages,
+  quoteIcon,
 } = homepageData;
 
-console.log(backgroundSvg);
+console.log("bg:", quoteIcon);
 ---
 
 <MainLayout>
-  <main class=" mx-auto ">
+  <main class="mx-auto">
     <!-- hero section -->
-    <section class="mb-28 mt-12 mx-auto">
+    <section class="mb-28 mt-6 max-lg:mt-2 mx-auto">
       <Hero
         title={title}
         description={description}
         imageUrl={homePageImages?.[2]?.asset?.url}
-        groupIconsImage={groupIconsImages?.[0]?.asset?.url}
-      backgroundSvg={backgroundSvg}
+        groupIconImage={homePageImages?.[0]?.asset?.url}
+        backgroundSvg={homePageImages?.[1]?.asset?.url}
+        partnerLogos={healthCareProvidersImages?.map(
+          (image: any) => image?.asset?.url
+        )}
+        endorsementImages={endorsementImages?.map(
+          (image: any) => image?.asset?.url
+        )}
+        heroImageText={heroImgText}
+        quoteIcon={quoteIcon?.asset?.url}
       />
     </section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
   </main>
 </MainLayout>
-<!-- partnerLogos={healthCareProvidersImages?.map((image) => image.asset.url)} -->
