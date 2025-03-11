@@ -1,111 +1,110 @@
-import React, { type ReactNode } from "react";
-import { marked } from "marked";
+import React from "react";
 import { FaStar, FaLongArrowAltRight } from "react-icons/fa";
 import { cn } from "@/lib/utils";
+import { BackgroundSVG } from "./home/backgroundSvg";
+import { TrustedBySection } from "./home/trustedby";
+import { Description } from "./home/description";
+import { PrescriptionTag } from "./home/prescription-tag";
+import { CallToAction } from "./home/call-to-action";
+import { Title } from "./home/title";
+import { highlightWords } from "@/utils/highlightWords";
 
 type HeroProps = {
   description: string;
   title: string;
   imageUrl?: string;
-  groupIconsImage: string;
+  groupIconImage: string;
   partnerLogos: string[];
   backgroundSvg: string;
+  endorsementImages: string[];
+  heroImageText: string;
+  quoteIcon: string;
   className?: string;
 };
-
 export default function Hero({
   description,
   title,
   imageUrl,
   backgroundSvg,
+  endorsementImages,
+  quoteIcon,
   className,
-  groupIconsImage,
+  groupIconImage,
   partnerLogos,
+  heroImageText,
 }: HeroProps) {
+  const wordsToHighlight = {
+    "trusted partner":
+      "text-medi-green-600 bg-gradient-to-r from-medi-green-600 to-medi-green-600/60 text-transparent bg-clip-text",
+    patients: "text-medi-green-400",
+    pharmacies: "text-medi-green-400",
+    "healthcare providers": "text-medi-green-400",
+  };
   return (
-    <div className={cn("relative h-full")}>
-      {/* Background SVG container */}
+    <div className={cn("relative flex flex-col items-center", className)}>
+      {/* Background SVG */}
+      <BackgroundSVG backgroundSvg={backgroundSvg} />
 
-      <div className="absolute inset-0 -top-40 -left-10 z-0 w-screen overflow-visible">
-        <svg
-          className="absolute top-0 left-0 h-full w-full opacity-3"
-          viewBox="0 0 1000 1000"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <pattern
-              id="grid"
-              width="40"
-              height="40"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 40 0 L 0 0 0 40"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-          <circle
-            cx="500"
-            cy="500"
-            r="300"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M200,200 Q500,100 800,200 T800,500 T500,800 T200,500 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-        </svg>
+      {/* Main Content */}
+      <div className="relative z-20 flex flex-col items-center px-4 text-center">
+        <Title className="text-5xl leading-[5rem] max-lg:leading-[4rem] sm:max-w-[90%] md:max-w-[78%] lg:max-w-[78%] lg:text-6xl xl:max-w-[60%]">
+          {highlightWords(title, wordsToHighlight)}
+        </Title>{" "}
+        <Description className="max-lg:max-w-[90%] lg:max-w-[55%] xl:w-[55%] 2xl:w-[60%]">
+          {highlightWords(description, wordsToHighlight)}
+        </Description>
+        <CallToAction />
       </div>
+      <PrescriptionTag />
 
-      {/* Content Section */}
-      <div className="relative z-20 mx-auto px-4">
-        <div className="">
-          <img src={backgroundSvg} alt="" />
-        </div>
-        <h1
-          className={cn(
-            `relative z-30 mx-auto mb-4 text-center text-[clamp(2.2rem,5vw,4.2rem)] leading-[5.2rem] font-extrabold tracking-wide text-wrap text-gray-800 antialiased max-lg:leading-[3rem] lg:max-w-[52rem]`,
-          )}
-        >
-          {title}
-        </h1>
-        <p
-          className={cn(
-            `relative z-10 mx-auto mb-8 px-16 text-center text-[clamp(.85rem,2vw,1.1rem)] text-wrap text-gray-600 antialiased lg:max-w-[45rem] 2xl:max-w-[54rem]`,
-          )}
-        >
-          {description}
-        </p>
-        <p className="absolute top-35 hidden w-fit items-center rounded-lg bg-white/90 p-2 px-4 text-[.7rem] font-extrabold tracking-wide text-green-500 shadow-2xl xl:flex">
-          <FaStar
-            size={25}
-            className="mr-3 flex place-content-center rounded-md bg-green-50 p-1"
+      {/* Pharmacist Image and Group Icons (Positioning Optimized) */}
+      <div className="relative flex w-full justify-between">
+        <GroupIcons groupIconImage={groupIconImage} />
+        {imageUrl && (
+          <PharmacistImage
+            imageUrl={imageUrl}
+            quoteIcon={quoteIcon}
+            heroImageText={heroImageText}
           />
-          Easy Prescription Fulfillment
-        </p>
-        <div className="mt-10 flex items-center justify-center">
-          <a
-            href="#"
-            className="flex items-center rounded-full bg-black px-7 py-4 font-bold text-white max-lg:py-3"
-          >
-            Make Enquiries
-            <FaLongArrowAltRight size={20} className="ml-3 text-white" />
-          </a>
-        </div>
-
-        {/* pharmacist image */}
-        <div className="absolute top-20 right-0 -z-10 hidden overflow-hidden xl:right-5 xl:block 2xl:right-20">
-          <img src={imageUrl} alt="Doctor" className="h-full" />
-        </div>
+        )}
       </div>
+      {/* Trusted by Section */}
+      <TrustedBySection
+        partnerLogos={partnerLogos}
+        endorsementImages={endorsementImages}
+      />
     </div>
   );
 }
+
+const PharmacistImage = ({
+  imageUrl,
+  heroImageText,
+  quoteIcon,
+}: {
+  imageUrl?: string;
+  heroImageText: string;
+  quoteIcon: string;
+}) => (
+  <div className="absolute right-0 -z-10 max-xl:hidden xl:-top-[30vh] xl:right-0 2xl:-top-[27vh] 2xl:right-30">
+    <div className="relative">
+      <img src={imageUrl} alt="Doctor" className="lg:h-full xl:w-full" />
+      <p
+        className="absolute right-20 -bottom-17 w-[320px] rounded-lg px-3 py-7 text-xs backdrop-blur-sm"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(94,209,139,0) 0%, rgba(94,209,139,0.2) 15%, rgba(94,209,139,0.3) 85%, rgba(94,209,139,0) 100%)",
+        }}
+      >
+        {heroImageText}
+      </p>
+    </div>
+    <img src={quoteIcon} alt="quote icon" className="object-contain absolute bottom-6 right-81" />
+  </div>
+);
+
+const GroupIcons = ({ groupIconImage }: { groupIconImage: string }) => (
+  <div className="absolute left-10 -z-10 hidden xl:-top-[17.7vh] xl:left-20 xl:block 2xl:xl:-top-[5vh] 2xl:xl:left-45">
+    <img src={groupIconImage} alt="Group Icons" className="" />
+  </div>
+);

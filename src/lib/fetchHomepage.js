@@ -17,6 +17,12 @@ export async function fetchHomepage() {
         url
       }
     },
+    quoteIcon{
+    asset->{
+        _id,
+        url
+}
+  },
     groupIconsImages[]{
       asset->{
         _id,
@@ -24,6 +30,12 @@ export async function fetchHomepage() {
       }
     },
     healthCareProvidersImages[]{
+      asset->{
+        _id,
+        url
+      }
+    },
+    endorsementImages[]{
       asset->{
         _id,
         url
