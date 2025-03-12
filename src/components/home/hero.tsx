@@ -1,12 +1,12 @@
 import React from "react";
 import { FaStar, FaLongArrowAltRight } from "react-icons/fa";
 import { cn } from "@/lib/utils";
-import { BackgroundSVG } from "./home/backgroundSvg";
-import { TrustedBySection } from "./home/trustedby";
-import { Description } from "./home/description";
-import { PrescriptionTag } from "./home/prescription-tag";
-import { CallToAction } from "./home/call-to-action";
-import { Title } from "./home/title";
+import { BackgroundSVG } from "./backgroundSvg";
+import { TrustedBySection } from "./trustedby";
+import { Description } from "./description";
+import { PrescriptionTag } from "./prescription-tag";
+import { CallToAction } from "./call-to-action";
+import { Title } from "./title";
 import { highlightWords } from "@/utils/highlightWords";
 
 type HeroProps = {

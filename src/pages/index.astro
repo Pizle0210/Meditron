@@ -1,8 +1,9 @@
 ---
+import HealthInsurerSolution from "@/components/home/healthInsurerSolution";
 import MainLayout from "../layouts/MainLayout.astro";
 import { fetchHomepage } from "../lib/fetchHomepage";
-import Hero from "@/components/hero";
-
+import Hero from "@/components/home/hero";
+// 
 const homepageData = await fetchHomepage();
 const {
   title,
@@ -55,8 +56,17 @@ console.log("bg:", quoteIcon);
         quoteIcon={quoteIcon?.asset?.url}
       />
     </section>
-    <section></section>
-    <section></section>
+    <section class="mb-28 mx-auto">
+      <HealthInsurerSolution
+        description={pmbSolutionsDescription}
+        title={pmbSolutionsTitle}
+        leftVector={sideIcons[5]?.asset?.url}
+        rightVector={sideIcons[4]?.asset?.url}
+        image={pmbSolutionsImage.asset?.url}
+      />
+    </section>
+    <section class="mb-28 mx-auto">
+    </section>
     <section></section>
     <section></section>
     <section></section>

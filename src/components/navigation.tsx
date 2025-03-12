@@ -11,7 +11,7 @@ export default function Navigation({ url }: { url: URL }) {
   const isActive = (path: string) => url.pathname === path;
 
   return (
-    <header className="w-full">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-sm transition-all duration-200">
       <nav className="mx-auto flex w-full items-center justify-between px-10 py-10 xl:px-20">
         {/* logo */}
         <div className="flex items-center space-x-4">
