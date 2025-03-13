@@ -3,7 +3,15 @@ import HealthInsurerSolution from "@/components/home/healthInsurerSolution";
 import MainLayout from "../layouts/MainLayout.astro";
 import { fetchHomepage } from "../lib/fetchHomepage";
 import Hero from "@/components/home/hero";
-// 
+import OurServices from "@/components/home/our-services";
+//
+
+type ServiceProps = {
+  title: string;
+  description: string;
+  image: string;
+};
+
 const homepageData = await fetchHomepage();
 const {
   title,
@@ -16,7 +24,7 @@ const {
   pmbSolutionsImage,
   ourServicesTitle,
   ourServicesDescription,
-  servicesSections,
+  services,
   howOurPlatformWorks,
   howOurPlatformWorksDescription,
   howOurPlatformWorksImage,
@@ -33,13 +41,26 @@ const {
   quoteIcon,
 } = homepageData;
 
-console.log("bg:", quoteIcon);
+const servicesData = Array.isArray(services)
+  ? services.map(
+      (service: { title: string; description: string; image: any }) => {
+        return {
+          title: service?.title ?? "",
+          description: service?.description ?? "",
+          image: service?.image?.asset?.url ?? "",
+        };
+      }
+    )
+  : [];
+
+//control
+console.log("servicesData:", servicesData ?? "No title available");
 ---
 
 <MainLayout>
   <main class="mx-auto">
     <!-- hero section -->
-    <section class="mb-28 mt-6 max-lg:mt-2 mx-auto">
+    <section class="lg:mb-28 mb-10 mt-6 max-lg:mt-2 mx-auto">
       <Hero
         title={title}
         description={description}
@@ -56,7 +77,8 @@ console.log("bg:", quoteIcon);
         quoteIcon={quoteIcon?.asset?.url}
       />
     </section>
-    <section class="mb-28 mx-auto">
+    <!-- health insurer solution -->
+    <section class="lg:mb-28 lg:mt-20 mx-auto mb-10">
       <HealthInsurerSolution
         description={pmbSolutionsDescription}
         title={pmbSolutionsTitle}
@@ -65,7 +87,14 @@ console.log("bg:", quoteIcon);
         image={pmbSolutionsImage.asset?.url}
       />
     </section>
-    <section class="mb-28 mx-auto">
+    <!-- our services -->
+    <section class="lg:mb-28 mx-auto mb-10">
+      <OurServices
+        description={ourServicesDescription}
+        title={ourServicesTitle}
+        vector={sideIcons[1]?.asset.url}
+        services={servicesData}
+      />
     </section>
     <section></section>
     <section></section>

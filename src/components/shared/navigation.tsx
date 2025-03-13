@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default function Navigation({ url }: { url: URL }) {
