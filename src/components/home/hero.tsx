@@ -7,7 +7,7 @@ import { Description } from "./description";
 import { PrescriptionTag } from "./prescription-tag";
 import { CallToAction } from "./call-to-action";
 import { Title } from "./title";
-import { highlightWords } from "@/utils/highlightWords";
+import { highlightWords } from "@/lib/highlightWords";
 
 type HeroProps = {
   description: string;

@@ -75,29 +75,29 @@ export default {
       type: 'text',
     },
     {
-      name: 'servicesSections',
-      title: 'Services Sections',
+      name: 'services',
+      title: 'Services',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
             {
-              name: 'serviceTitle',
-              title: 'Service Title',
+              name: 'title',
+              title: 'Title',
               type: 'string',
             },
             {
-              name: 'serviceImage',
-              title: 'Service Image',
+              name: 'image',
+              title: 'Image',
               type: 'image',
               options: {
                 hotspot: true,
               },
             },
             {
-              name: 'serviceDescription',
-              title: 'Service Description',
+              name: 'description',
+              title: 'Description',
               type: 'text',
             },
           ],
@@ -128,21 +128,21 @@ export default {
           type: 'object',
           fields: [
             {
-              name: 'serviceTitle',
-              title: 'Service Title',
+              name: 'title',
+              title: 'Title',
               type: 'string',
             },
             {
-              name: 'serviceImage',
-              title: 'Service Image',
+              name: 'image',
+              title: 'Image',
               type: 'image',
               options: {
                 hotspot: true,
               },
             },
             {
-              name: 'serviceDescription',
-              title: 'Service Description',
+              name: 'description',
+              title: 'Description',
               type: 'text',
             },
           ],

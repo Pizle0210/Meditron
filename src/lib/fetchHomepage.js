@@ -51,15 +51,15 @@ export async function fetchHomepage() {
     },
     ourServicesTitle,
     ourServicesDescription,
-    servicesSections[]{
-      serviceTitle,
-      serviceImage{
+    services[]{
+      title,
+      image{
         asset->{
           _id,
           url
         }
       },
-      serviceDescription
+      description
     },
     howOurPlatformWorks,
     howOurPlatformWorksDescription,
@@ -70,14 +70,14 @@ export async function fetchHomepage() {
       }
     },
     howPlatformWorksSections[]{
-      serviceTitle,
-      serviceImage{
+      title,
+      image{
         asset->{
           _id,
           url
         }
       },
-      serviceDescription
+      description
     },
     learnMoreSection,
     learnMoreSectionDescription,
@@ -113,6 +113,5 @@ export async function fetchHomepage() {
   }`;
 
   const homepage = await sanityClient.fetch(query);
-  console.log(homepage); // Add this line to inspect the fetched data
   return homepage;
 }
